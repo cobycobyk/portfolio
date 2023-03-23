@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import React from 'react';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
@@ -35,7 +34,7 @@ function Hero({}: Props) {
           <Link href="#skills">
             <button className='heroButton'>Skills</button>
           </Link>
-          <Link href="#rojects">
+          <Link href="#projects">
             <button className='heroButton'>Projects</button>
           </Link>
         </div>
