@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import Header from '@/components/header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import WorkExperience from '@/components/WorkExperience'
@@ -9,6 +8,7 @@ import Projects from '@/components/Projects'
 import ContactMe from '@/components/ContactMe'
 import Link from 'next/link'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
