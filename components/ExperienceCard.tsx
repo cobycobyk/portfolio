@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Experience } from '@/typings';
+import { urlFor } from '@/sanity';
 
-type Props = {}
+type Props = {
+  experience: Experience
+}
 
-function ExperienceCard({}: Props) {
+function ExperienceCard({experience}: Props) {
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden'>
       <motion.img
@@ -14,18 +18,32 @@ function ExperienceCard({}: Props) {
         transition={{duration: 1.2}}
         whileInView={{opacity: 1, y: 0}}
         viewport={{once: true}}
-        className='w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center' src="https://i.imgur.com/5DVFelJ.jpg" alt="company" />
+        className='w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center' src={urlFor(experience?.companyImage).url()} alt="company" />
       
       <div className='px-0 md:px-10'>
         <h4 className='text-4xl font-light'>CEO</h4>
         <p className='font-bold text-2xl mt-1'>Stardam</p>
         <div className='flex space-x-2 my-2'>
-          <img className='h-10 w-10 rounded-full' src="" alt="" />
-          <img className='h-10 w-10 rounded-full' src="" alt="" />
-          <img className='h-10 w-10 rounded-full' src="" alt="" />
+          {experience.technologies.map(technology => (
+            technology.image ? (
+              <img
+                className='h-10 w-10 rounded-full'
+                src={urlFor(technology?.image).url()}
+                alt="technology"
+              />
+            ) : (
+              null
+            )
+            
+          ))}
         </div>
 
-        <p className='uppercase py-5 text-gray-300'>Started... ended</p>
+        <p className='uppercase py-5 text-gray-300'>
+          {new Date(experience.dateStarted).toDateString()} -
+          {experience.isCurrentlyWorkingHere
+            ? "Current" :
+            new Date(experience.dateEnded).toDateString()}
+        </p>
         <ul className='list-disc space-y-4 ml-5 text-lg'>
           <li>Summary Points</li>
           <li>Summary Points</li>
@@ -38,4 +56,4 @@ function ExperienceCard({}: Props) {
   )
 }
 
-export default ExperienceCard
+export default ExperienceCard;
