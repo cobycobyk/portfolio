@@ -27,6 +27,7 @@ function ExperienceCard({experience}: Props) {
           {experience.technologies.map(technology => (
             technology.image ? (
               <img
+                key={technology._id}
                 className='h-10 w-10 rounded-full'
                 src={urlFor(technology?.image).url()}
                 alt="technology"
@@ -45,11 +46,11 @@ function ExperienceCard({experience}: Props) {
             new Date(experience.dateEnded).toDateString()}
         </p>
         <ul className='list-disc space-y-4 ml-5 text-lg'>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
+          {experience.points.map((point, key) => (
+            <li key={key}>
+              {point}
+            </li>
+          ))}
         </ul>
       </div>
     </article>
